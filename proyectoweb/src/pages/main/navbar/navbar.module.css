@@ -1,0 +1,4 @@
+/* Las del navbar estan en el global.css */
+nav ul li.active{
+    background-color: #347ccb;
+}
