@@ -8,7 +8,7 @@ const RA = () => {
             <div>
                 <h3>Resultados de aprendizaje</h3>
             </div>
-            <div className={styles.table}>
+            <div className="table">
                 <table>
                     <thead>
                         <tr>

@@ -1,22 +1,17 @@
-import Image from "next/image";
-import localFont from "next/font/local";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
 
-  const changePage = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    router.push('/main');
-  }
+  useEffect(() => {
+    // Redirige a la página de login cuando se monte el componente
+    router.push('/login');
+  }, [router]);
 
   return (
     <div className="full-height">
-      <p>Hello world</p>
-      <form onSubmit={changePage}>
-        <button type="submit">Ir a main</button>
-      </form>
+      <p>Redirigiendo a la página de login...</p>
     </div>
   );
 }

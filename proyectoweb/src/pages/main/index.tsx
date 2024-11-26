@@ -3,6 +3,8 @@ import { useState } from "react";
 import Header from "./header/header.component";
 import Navbar from "./navbar/navbar.component";
 import CompetenciasRAProgramModule from "./Competencias-RA-Program-module/module.component";
+import Home from "./Home/home.component";
+
 
 export default function Main() {
     const [selectedOption, setSelectedOption] = useState("home");
@@ -12,13 +14,13 @@ export default function Main() {
             case "Competencias_RA_module":
                 return <CompetenciasRAProgramModule/>
             default:
-                return <p>Esta es la pagina principal</p>
+                return <Home/>
         }
     }
 
   return (
     <div>
-      <Header />
+      <Header/>
       <div className="container">
         <div className="navbar">
           <Navbar onSelect={setSelectedOption}/>

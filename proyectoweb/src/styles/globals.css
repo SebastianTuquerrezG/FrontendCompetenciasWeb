@@ -13,6 +13,7 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow-y: hidden;
 }
 
 body {
@@ -30,18 +31,25 @@ body {
 
 .container {
   display: flex;
-  height: calc(100vh - 96px);
+  height: calc(100vh - 56px);
 }
 
 .navbar {
   width: 250px;
   background-color: #272a27;
   padding-top: 20px;
+  height: calc(100vh - 56px);
+  height: 100%;
+  overflow: hidden;
+  min-height: 500px;
 }
 
 .content {
   flex-grow: 1;
   padding: 20px;
+  min-height: 500px;
+  /* overflow: hidden; */
+  /* height: 100%; */
 }
 
 
@@ -50,8 +58,6 @@ nav ul {
   list-style-type: none;
   padding: 0;
 }
-
-
 
 nav ul li {
   padding: 20px;
@@ -69,52 +75,75 @@ nav ul li:hover {
 /* Estilos generales */
 .main-div-style {
   /* Para no batallar encontrando la forma */
-  height: calc(90vh - 40px);
+  height: calc(100vh - 140px);
   display: flex;
   flex-direction: column;
   background-color: #272a27;
   margin: 0;
   padding-left: 30px;
+  padding-right: 30px;
   border-radius: 20px;
   box-shadow: 2px 2px 4px 2px #ccc;
+  min-height: 500px;
+  overflow: hidden;
 }
 
-.common-table { /* Para tablas */
-  .table {
-    width: 99%;
-    display: flex;
-    flex-direction: column;
-    background-color: #E6E4DC;
-    margin: 0;
-    /* padding-left: 30px; */
+/* Para tablas */
+.table {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  margin: 0;
+  /* padding-left: 30px; */
+  margin: 10px;
+}
 
-    margin: 10px;
-  }
+.table table {
+  width: 98%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #272A2D;
+}
 
-  .table table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border-color: #272A2D;
-  }
+.table table thead {
+  background-color: #272A2D;
+  color: white;
+}
 
-  .table table thead {
-    background-color: #272A2D;
-    color: white;
-  }
+.table table thead th {
+  padding: 10px;
+  border: 1px solid #272A2D !important;
+}
 
-  .table table thead th {
-    padding: 10px;
-    border: 1px solid #272A2D !important;
-  }
+.table table tbody tr {
+  background-color: #fff !important;
+  border: 1px solid #272A2D !important;
+}
 
-  .table table tbody tr {
-    background-color: #fff !important;
-    border: 1px solid #272A2D !important;
-  }
+.table table tbody tr td {
+  padding: 10px;
+  border: 1px solid #272A2D !important;
+}
 
-  .table table tbody tr td {
-    padding: 10px;
-    border: 1px solid #272A2D !important;
-  }
+.table button{
+  background-color: #eb5b38;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: bold;
+  
+}
+
+.table button:hover{
+  background-color: #347CCB;
+  color: white;
+}
+
+.table button:active{
+  background-color: #2a65a5;
+  color: white;
 }

@@ -7,7 +7,7 @@ const Competencias = () => {
             <div >
                 <h3>Competencias de programa</h3>
             </div>
-            <div className={styles.table}>
+            <div className="table">
                 <table>
                     <thead>
                         <tr>
