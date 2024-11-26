@@ -8,23 +8,30 @@ const Home = () => {
         <div className="main-div-style">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <FontAwesomeIcon icon={faHome} />
+                    <FontAwesomeIcon icon={faHome} className={styles.icon}/>
                     <h1>Inicio</h1>
 
                 </div>
                 <div className={styles.content}>
-                    <img src="" alt="home_img" />
+                    <img src="/assets/images/home_image.jpg" alt="home_img" className={styles.images}/>
                     <p>Bienvenido ** a SISGECO</p>
                 </div>
                 <div className={styles.footer}>
-                    <div>
-                        <div className={styles.social}>
-                            <FontAwesomeIcon icon={faTwitter} className={styles.icon}/>
-                            <FontAwesomeIcon icon={faFacebook} className={styles.icon}/>
-                            <FontAwesomeIcon icon={faInstagram} className={styles.icon}/>
+                    <div className={styles.social}>
+                        <div >
+                        <FontAwesomeIcon icon={faTwitter} className={styles.icon} />
+                        <FontAwesomeIcon icon={faFacebook} className={styles.icon} />
+                        <FontAwesomeIcon icon={faInstagram} className={styles.icon} />
+                        </div>
+                            <p>Contactanos</p>
+                        <div>
                         </div>
                     </div>
-                    <p>Desarrollado por: **</p>
+                    <div className={styles.social}>
+                    </div>
+                    <div className={styles.social}>
+                        <span>SISGECO</span>
+                    </div>
                 </div>
             </div>
         </div>
