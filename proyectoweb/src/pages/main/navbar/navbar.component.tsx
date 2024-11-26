@@ -6,7 +6,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
-  const [activeTab, setActiveTab] = useState("Competencias_RA_module");
+  const [activeTab, setActiveTab] = useState("none");
 
   const handleSelect = (option: string) => {
     setActiveTab(option);
