@@ -1,27 +1,120 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* styles/globals.css 
+  PALETA
+  #272a27 -- VERDE MUY OSCURO
+  #eb5b38 -- NARANJA
+  #347CCB -- AZUL CLARO
+  #E6E4DC -- GRIS CLARO
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+*/
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.full-height {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 96px);
+}
+
+.navbar {
+  width: 250px;
+  background-color: #272a27;
+  padding-top: 20px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+
+/* styles/navbar.css */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
+nav ul li {
+  padding: 20px;
+  background-color: #272a27;
+  color: white;
+  /* margin: 5px 0; */
+}
+
+nav ul li:hover {
+  cursor: pointer;
+  background-color: #343834;
+}
+
+
+/* Estilos generales */
+.main-div-style {
+  /* Para no batallar encontrando la forma */
+  height: calc(90vh - 40px);
+  display: flex;
+  flex-direction: column;
+  background-color: #272a27;
+  margin: 0;
+  padding-left: 30px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px 2px #ccc;
+}
+
+.common-table { /* Para tablas */
+  .table {
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E6E4DC;
+    margin: 0;
+    /* padding-left: 30px; */
+
+    margin: 10px;
+  }
+
+  .table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-color: #272A2D;
+  }
+
+  .table table thead {
+    background-color: #272A2D;
+    color: white;
+  }
+
+  .table table thead th {
+    padding: 10px;
+    border: 1px solid #272A2D !important;
+  }
+
+  .table table tbody tr {
+    background-color: #fff !important;
+    border: 1px solid #272A2D !important;
+  }
+
+  .table table tbody tr td {
+    padding: 10px;
+    border: 1px solid #272A2D !important;
   }
 }

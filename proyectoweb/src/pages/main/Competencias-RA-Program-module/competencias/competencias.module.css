@@ -1,0 +1,48 @@
+.main{
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E6E4DC;
+    margin: 0;
+    padding-left: 20px;
+    border-radius: 0px 20px 20px 20px;
+}
+
+.table {
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E6E4DC;
+    margin: 0;
+    /* padding-left: 30px; */
+
+    margin: 10px;
+  }
+
+  .table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-color: #272A2D;
+  }
+
+  .table table thead {
+    background-color: #272A2D;
+    color: white;
+  }
+
+  .table table thead th {
+    padding: 10px;
+    border: 1px solid #272A2D !important;
+  }
+
+  .table table tbody tr {
+    background-color: #fff !important;
+    border: 1px solid #272A2D !important;
+  }
+
+  .table table tbody tr td {
+    padding: 10px;
+    border: 1px solid #272A2D !important;
+  }

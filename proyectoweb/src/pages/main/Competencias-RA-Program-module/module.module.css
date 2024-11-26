@@ -1,0 +1,27 @@
+.title{
+    color: white;
+}
+
+.tabs {
+    display: flex;
+    font-weight: bold !important;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.tabs button:hover {
+    background-color: #347ccb;
+    color: white;
+}
+
+.tabs button.active {
+    background-color: #eb5b38;
+    font-weight: bold;
+    color: white;
+}
