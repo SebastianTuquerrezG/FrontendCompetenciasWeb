@@ -1,0 +1,39 @@
+/* components/create.module.css */
+.createContainer {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
+  margin: 20px auto;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.createContainer button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  background-color: #0070f3;
+  color: white;
+  cursor: pointer;
+}
+
+.createContainer button:hover {
+  background-color: #005bb5;
+}

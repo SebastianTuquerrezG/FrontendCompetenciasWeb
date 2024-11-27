@@ -34,6 +34,12 @@ const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
         >
           Opción 3
         </li>
+        <li
+          className={activeTab === "logout" ? styles.active : ""}
+          onClick={() => handleSelect("logout")}
+        >
+          Logout (no sirve)
+        </li>
       </ul>
     </nav>
   );

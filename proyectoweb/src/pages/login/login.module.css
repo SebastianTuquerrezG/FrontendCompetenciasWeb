@@ -6,6 +6,12 @@
     height: 100dvh;
     background-color: #f0f0f0;
     overflow: hidden;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.container.fade-out {
+    opacity: 0;
 }
 
 .loginBox {
@@ -38,7 +44,7 @@
 }
 
 .inputGroup input {
-    
+
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -71,17 +77,17 @@
     font-size: 1.2rem;
 }
 
-.title{
+.title {
     font-size: 2rem;
-    
+
 }
 
-.logo{
+.logo {
     width: 50px;
     height: 50px;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,6 +98,6 @@
     padding-right: 20px;
 }
 
-.span{
+.span {
     color: #4eb9e4;
 }

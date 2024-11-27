@@ -8,7 +8,7 @@ const Home = () => {
         <div className="main-div-style">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <FontAwesomeIcon icon={faHome} className={styles.icon}/>
+                    <FontAwesomeIcon icon={faHome} className={styles.icon} id="home-icon"/>
                     <h1>Inicio</h1>
 
                 </div>
