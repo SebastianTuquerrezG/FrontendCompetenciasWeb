@@ -93,15 +93,15 @@ nav ul li:hover {
 .sub-div-style {
   /* Para div secundarios */
   width: 99%;
-  height: calc(87vh - 140px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #3a3d3a;
   margin: 0;
-  padding-left: 20px;
+  padding: 20px;
   border-radius: 0px 20px 20px 20px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-x: auto;
   color: white;
 }
 
@@ -126,8 +126,8 @@ nav ul li:hover {
 }
 
 .table table thead {
-  background-color: #347ccb;
-  border: solid #347ccb;
+  background-color: #347CCB;
+  border: solid #347CCB;
   color: white;
   border-radius: 20px 20px 0px 0px ;
 }
@@ -138,16 +138,17 @@ nav ul li:hover {
 }
 
 .table table tbody tr {
-  background-color: #ffffff !important;
+  background-color: #4f524f !important;
 }
 
 .table table tbody tr td {
   padding: 10px;
-  border: solid 1px #bcc3ca !important;
+  border: solid 1px #575c57 !important;
+  color:white;
 }
 
 .table button {
-  background-color: #eb5b38;
+  background-color: #347CCB;
   color: white;
   border: none;
   padding: 10px;
@@ -155,15 +156,16 @@ nav ul li:hover {
   cursor: pointer;
   margin-left: 5px;
   font-weight: bold;
-
+  transition: 0.2s;
 }
 
 .table button:hover {
-  background-color: #b85339;
+  background-color: #3b87da;
+  transition: 0.2s;
   color: white;
 }
 
 .table button:active {
-  background-color: #cc6146;
+  background-color: #3b87da;
   color: white;
 }

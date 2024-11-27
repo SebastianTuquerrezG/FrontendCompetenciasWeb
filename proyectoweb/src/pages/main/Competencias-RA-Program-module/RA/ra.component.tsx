@@ -28,7 +28,7 @@ const RA = () => {
   };
 
   return (
-    <div className="sub-div-style">
+    <div className={styles.subdivstyle}>
       <div>
         <h3>Resultados de aprendizaje</h3>
       </div>
@@ -67,10 +67,6 @@ const RA = () => {
             {index + 1}
           </button>
         ))}
-      </div>
-      <div className={styles.buttons}>
-        <button>Crear resultado de aprendizaje</button>
-        <button>Ver resultados de aprendizaje inactivos</button>
       </div>
     </div>
   );

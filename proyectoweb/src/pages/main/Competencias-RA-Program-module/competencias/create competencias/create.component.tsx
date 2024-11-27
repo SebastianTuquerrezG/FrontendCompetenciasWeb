@@ -1,28 +1,50 @@
 // components/CreateComponent.tsx
-import React from "react";
+import React, { useState } from "react";
 import styles from "./create.module.css";
 
 interface CreateComponentProps {
-  onClose: () => void;
+  onCreate: () => void;
+  onCancel: () => void;
 }
 
-const CreateComponent: React.FC<CreateComponentProps> = ({ onClose }) => {
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+const CreateComponent: React.FC<CreateComponentProps> = ({ onCreate, onCancel }) => {
+  const [description, setDescription] = useState("");
+  const [level, setLevel] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Lógica para crear una nueva competencia
-    onClose();
-};
+    console.log("Competencia creada:", { description, level });
+    onCreate(); 
+  };
 
   return (
-    <div className={styles.createContainer}>
+    <div className={styles.subdivstyle}>
       <h2>Crear Competencia</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
           <label>Descripción:</label>
-          <input type="text" required />
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+
+          <label>Nivel</label>
+          <select
+            className={styles.select}
+            value={level}
+            onChange={(e) => setLevel(e.target.value)}
+            required
+          >
+            <option value="">Seleccione un nivel</option>
+            <option value="BASICO">BASICO</option>
+            <option value="INTERMEDIO">INTERMEDIO</option>
+            <option value="AVANZADO">AVANZADO</option>
+          </select>
         </div>
-        <button type="submit">Guardar</button>
-        <button type="button" onClick={onClose}>Cancelar</button>
+        <button type="submit" onClick={onCreate}>Guardar</button>
+        <button type="button" onClick={onCancel}>Volver</button>
       </form>
     </div>
   );

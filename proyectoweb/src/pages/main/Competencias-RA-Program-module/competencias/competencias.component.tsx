@@ -38,7 +38,7 @@ const Competencias = () => {
   };
 
   return (
-    <div className="sub-div-style">
+    <div className={styles.subdivstyle} >
       <div>
         <h3>Competencias de programa</h3>
       </div>
@@ -76,13 +76,6 @@ const Competencias = () => {
           </button>
         ))}
       </div>
-      <div className={styles.buttons}>
-        <button onClick={handleCreateCompetencia}>Crear competencia</button>
-        <button>Ver competencias inactivas</button>
-      </div>
-      {showCreateComponent && (
-        <CreateComponent onClose={handleCloseCreateComponent} />
-      )}
     </div>
   );
 };
