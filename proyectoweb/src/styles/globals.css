@@ -69,11 +69,13 @@ nav ul li {
 nav ul li:hover {
   cursor: pointer;
   background-color: #343834;
+  transition: 0.2s;
 }
 
 
 /* Estilos generales */
 .main-div-style {
+  /* Para div principales */
   /* Para no batallar encontrando la forma */
   height: calc(100vh - 140px);
   display: flex;
@@ -88,46 +90,65 @@ nav ul li:hover {
   overflow: hidden;
 }
 
+.sub-div-style {
+  /* Para div secundarios */
+  width: 99%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #3a3d3a;
+  margin: 0;
+  padding: 20px;
+  border-radius: 0px 20px 20px 20px;
+  overflow-y: auto;
+  overflow-x: auto;
+  color: white;
+}
+
 /* Para tablas */
 .table {
+  justify-content: center;
+  align-items: start;
   width: 99%;
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  margin: 0;
   /* padding-left: 30px; */
-  margin: 10px;
+  color: black;
 }
 
 .table table {
   width: 98%;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
-  border-color: #272A2D;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .table table thead {
-  background-color: #272A2D;
+  background-color: #347CCB;
+  border: solid #347CCB;
   color: white;
+  border-radius: 20px 20px 0px 0px ;
 }
 
 .table table thead th {
   padding: 10px;
-  border: 1px solid #272A2D !important;
+  border: none;
 }
 
 .table table tbody tr {
-  background-color: #fff !important;
-  border: 1px solid #272A2D !important;
+  background-color: #4f524f !important;
 }
 
 .table table tbody tr td {
   padding: 10px;
-  border: 1px solid #272A2D !important;
+  border: solid 1px #575c57 !important;
+  color:white;
 }
 
-.table button{
-  background-color: #eb5b38;
+.table button {
+  background-color: #347CCB;
   color: white;
   border: none;
   padding: 10px;
@@ -135,15 +156,16 @@ nav ul li:hover {
   cursor: pointer;
   margin-left: 5px;
   font-weight: bold;
-  
+  transition: 0.2s;
 }
 
-.table button:hover{
-  background-color: #347CCB;
+.table button:hover {
+  background-color: #3b87da;
+  transition: 0.2s;
   color: white;
 }
 
-.table button:active{
-  background-color: #2a65a5;
+.table button:active {
+  background-color: #3b87da;
   color: white;
 }
