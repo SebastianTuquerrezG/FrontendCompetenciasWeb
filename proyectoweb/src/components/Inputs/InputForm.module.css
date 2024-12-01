@@ -1,0 +1,36 @@
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputGroup input {
+    
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.is-invalid{
+    border-color: red;
+}
+
+.error {
+    color: red;
+    max-width: 200px;
+    margin-top: 0.25rem;
+}
+
+.form-control {
+    padding: 0.5rem;
+    border: 1px solid rgb(241, 3, 3);
+    border-radius: 0.25rem;
+}

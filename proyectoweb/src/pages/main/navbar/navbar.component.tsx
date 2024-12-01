@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { ReactEventHandler, useState } from "react";
 import styles from "./navbar.module.css";
+import { useUserContext } from "@/context/userContext";
 
 interface NavbarProps {
   onSelect: (page: string) => void;
@@ -7,11 +8,16 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
   const [activeTab, setActiveTab] = useState("none");
+  const { logout } = useUserContext();
 
   const handleSelect = (option: string) => {
     setActiveTab(option);
     onSelect(option);
   };
+
+  const handleLogout = () => {
+    logout();
+  }
 
   return (
     <nav>
@@ -29,10 +35,10 @@ const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
           Opción 2
         </li>
         <li
-          className={activeTab === "option3" ? styles.active : ""}
-          onClick={() => handleSelect("option3")}
+          className={activeTab === "Logout" ? styles.active : ""}
+          onClick={handleLogout}
         >
-          Opción 3
+          Cerrar sesión
         </li>
       </ul>
     </nav>
