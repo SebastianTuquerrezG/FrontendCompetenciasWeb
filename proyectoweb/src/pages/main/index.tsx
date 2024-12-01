@@ -5,7 +5,6 @@ import Navbar from "./navbar/navbar.component";
 import CompetenciasRAProgramModule from "./Competencias-RA-Program-module/module.component";
 import Home from "./Home/home.component";
 import { UserProvider, useUserContext } from "@/context/userContext";
-import { redirect } from "next/navigation";
 
 
 export default function Main() {
