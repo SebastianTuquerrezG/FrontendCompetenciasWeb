@@ -180,6 +180,7 @@ nav ul li:hover {
 
 .table input.readonly{
   background-color: transparent;
+  width: 98%;
   border: none;
   color: white;
   font-size: 1rem;
@@ -199,13 +200,14 @@ nav ul li:hover {
   border: #347CCB;
   color: white;
   font-size: 1rem;
-  width: 90%;
+  width: 98%;
   padding: 10px;
   border-radius: 10px;
 }
 
 .table select.readonly{
   background-color: transparent;
+  width: 98%;
   border: none;
   color: white;
   font-size: 1rem;
@@ -213,6 +215,7 @@ nav ul li:hover {
 }
 .table select.editable{
   background-color: #347CCB;
+  width: 98%;
   border: none;
   color: white;
   font-size: 1rem;

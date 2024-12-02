@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ra.module.css";
 import { getRA, updateRA } from "@/services/Competencias_Ra_service/ra.service";
+import { getCompetencias } from "@/services/Competencias_Ra_service/competencias.service";
+
 
 const InactivasRA = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [records, setRecords] = useState<{ id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }[]>([]);
+  const [records, setRecords] = useState<{ id: number; descripcion: string; idCompetenciaPrograma:number; estado: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [editRecordId, setEditRecordId] = useState<number | null>(null);
   const [editDescription, setEditDescription] = useState("");
-  const [editAssociatedCompetence, setEditAssociatedCompetence] = useState<{ id: number; descripcion: string; nivel: string; estado: number } | null>(null);
+  const [editAssociatedCompetence, setEditAssociatedCompetence] = useState(null);
+  const [competenciaRecords, setRecordsCompetencia] = useState<{ id: number; descripcion: string; nivel: string; estado: number }[]>([]);
   const recordsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRA() as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }[];
+        const data = await getRA() as { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number }[];
         
         setRecords(data);
+        const dataCompetencia = await getCompetencias() as { id: number; descripcion: string; nivel: string; estado: number }[];
+        setRecordsCompetencia(dataCompetencia);
         setLoading(false);
         console.log(records);
       } catch (error) {
@@ -38,15 +43,15 @@ const InactivasRA = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleEdit = (record: { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }) => {
+  const handleEdit = (record: { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number }) => {
     setEditRecordId(record.id);
     setEditDescription(record.descripcion);
-    setEditAssociatedCompetence(record.idCompetenciaPrograma);
+    // setEditAssociatedCompetence(record.idCompetenciaPrograma);
   };
 
   const handleSave = async (id: number) => {
     try {
-      const updatedRA = await updateRA({id: id, descripcion: editDescription, idCompetenciaPrograma: editAssociatedCompetence!, estado: 0 }) as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number };
+      const updatedRA = await updateRA({id: id, descripcion: editDescription, idCompetenciaPrograma: editAssociatedCompetence!, estado: 0 }) as { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number };
       setRecords(records.map(record => (record.id === id ? updatedRA : record)));
       setEditRecordId(null);
     } catch (error) {
@@ -54,14 +59,14 @@ const InactivasRA = () => {
     }
   };
 
-  const handleActivate = async (record: { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }) => {
+  const handleActivate = async (record: { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number }) => {
     try {
       let id = record.id;
       let descripcion = record.descripcion;
       let idCompetenciaPrograma = record.idCompetenciaPrograma;
       let estado = 1;
       if (id !== null) {
-        const updatedRA = await updateRA({id: id,  descripcion: descripcion, idCompetenciaPrograma: idCompetenciaPrograma!, estado: estado }) as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number };
+        const updatedRA = await updateRA({id: id,  descripcion: descripcion, idCompetenciaPrograma: idCompetenciaPrograma!, estado: estado }) as { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number };
         setRecords(records.map(record => (record.id === id ? updatedRA : record)));
       }
     } catch (error) {
@@ -78,7 +83,7 @@ const InactivasRA = () => {
       <div>
         <h3>Resultados de aprendizaje inactivos</h3>
       </div>
-      <div className="table">
+      <div className={styles.table}>
         {inactiveRecords.length === 0 ? (
           <p>No se encontraron registros</p>
         ) : (
@@ -101,16 +106,16 @@ const InactivasRA = () => {
                       value={editRecordId === record.id ? editDescription : record.descripcion}
                       onChange={(e) => setEditDescription(e.target.value)}
                       readOnly={editRecordId !== record.id}
-                      className={editRecordId === record.id ? "editable" : "readonly"}
+                      className={editRecordId === record.id ? styles.editable : styles.readonly}
                       tabIndex={editRecordId === record.id ? 0 : -1}
                     />
                   </td>
                   <td>
                     <input
                       type="text"
-                      value={record.idCompetenciaPrograma.descripcion}
+                      value={competenciaRecords.find(competencia => competencia.id === record.idCompetenciaPrograma)?.descripcion}
                       readOnly
-                      className="readonly"
+                      className={styles.readonly}
                     />
                   </td>
                   <td>

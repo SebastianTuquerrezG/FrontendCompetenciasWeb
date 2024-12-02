@@ -47,7 +47,7 @@ const CompetenciasRAProgramModule = () => {
                 return (
                     <div>
                         <Inactivas />
-                        <div className={styles.buttons}>
+                        <div className={styles.buttonsBack}>
                             <button onClick={() => setSelectedTab("competencias")}>Volver</button>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ const CompetenciasRAProgramModule = () => {
                 return (
                     <div>
                         <InactivasRA />
-                        <div className={styles.buttons}>
+                        <div className={styles.buttonsBack}>
                             <button onClick={() => setSelectedTab("ra")}>Volver</button>
                         </div>
                     </div>
@@ -90,12 +90,26 @@ const CompetenciasRAProgramModule = () => {
                 <button
                     className={selectedOption === "competencias" ? styles.active : ""}
                     onClick={() => setSelectedTab("competencias")}
+                    hidden={selectedOption === "create-competencias" || selectedOption === "inactive-competencias"}
+                >
+                    Gestionar Competencias
+                </button>
+                <button
+                    className={selectedOption === "create-competencias" || selectedOption === "inactive-competencias" ? styles.activeSub : ""}
+                    hidden={selectedOption !== "create-competencias" && selectedOption !== "inactive-competencias"}
                 >
                     Gestionar Competencias
                 </button>
                 <button
                     className={selectedOption === "ra" ? styles.active : ""}
                     onClick={() => setSelectedTab("ra")}
+                    hidden={selectedOption === "create-ra" || selectedOption === "inactive-ra"}
+                >
+                    Resultados de Aprendizaje
+                </button>
+                <button
+                    className={selectedOption === "create-ra" || selectedOption === "inactive-ra" ? styles.activeSub : ""}
+                    hidden={selectedOption !== "create-ra" && selectedOption !== "inactive-ra"}
                 >
                     Resultados de Aprendizaje
                 </button>

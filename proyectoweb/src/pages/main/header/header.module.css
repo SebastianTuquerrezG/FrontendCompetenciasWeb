@@ -18,5 +18,12 @@
     font-size: 40px;
     margin-left: auto;
     padding-right: 30px;
-    color: #347CCB;
+    color: #3f8ee2;
+    transition: 0.2s;
+}
+
+.icon:hover{
+    cursor: pointer;
+    color: #eb5b38;
+    transition: 0.2s;
 }

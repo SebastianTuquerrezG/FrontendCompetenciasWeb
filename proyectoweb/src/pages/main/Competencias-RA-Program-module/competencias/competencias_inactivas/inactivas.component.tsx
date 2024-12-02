@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./competencias.module.css";
+import styles from "./inactivas.module.css";
 import { getCompetencias, updateCompetencia } from "@/services/Competencias_Ra_service/competencias.service";
 
 const Inactivas = () => {
@@ -78,7 +78,7 @@ const Inactivas = () => {
       <div>
         <h3>Competencias de programa inactivas</h3>
       </div>
-      <div className="table">
+      <div className={styles.table}>
         {inactiveRecords.length === 0 ? (
           <p>No se encontraron registros</p>
         ) : (
@@ -101,7 +101,7 @@ const Inactivas = () => {
                       value={editRecordId === record.id ? editDescription : record.descripcion}
                       onChange={(e) => setEditDescription(e.target.value)}
                       readOnly={editRecordId !== record.id}
-                      className={editRecordId === record.id ? "editable" : "readonly"}
+                      className={editRecordId === record.id ? styles.editable : styles.readonly}
                     />
                   </td>
                   <td>
@@ -109,7 +109,7 @@ const Inactivas = () => {
                       value={editRecordId === record.id ? editLevel : record.nivel}
                       onChange={(e) => setEditLevel(e.target.value)}
                       disabled={editRecordId !== record.id}
-                      className={editRecordId === record.id ? "editable" : "readonly"}
+                      className={editRecordId === record.id ? styles.editable : styles.readonly}
                       tabIndex={editRecordId === record.id ? 0 : -1}
                     >
                       <option value="BASICO">BASICO</option>

@@ -52,17 +52,6 @@ const Competencias = () => {
     }
   };
 
-  const handleDeactivate = async (id: number) => {
-    try {
-      const updatedCompetencia = await deactivateCompetencia(id);
-      setRecords(records.map(record => (record.id === id ? { ...record, estado: 0 } : record)));
-    } catch (error) {
-      console.error('Error deactivating competencia:', error
-      );
-    }
-  };
-
-
   const handleDelete = async (id: number) => {
     try {
       await deleteCompetencia(id);

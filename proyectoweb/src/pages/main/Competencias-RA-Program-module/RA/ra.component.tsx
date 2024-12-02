@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ra.module.css";
-import { getRA, updateRA, createRA, deleteRA, deactivateRA } from "@/services/Competencias_Ra_service/ra.service";
+import { getRA, updateRA, deleteRA } from "@/services/Competencias_Ra_service/ra.service";
+import { getCompetencias } from "@/services/Competencias_Ra_service/competencias.service";
 
 const RA = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [records, setRecords] = useState<{ id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number}; estado: number }[]>([]);
+  const [records, setRecords] = useState<{ id: number; descripcion: string; idCompetenciaPrograma: number; estado: number }[]>([]);
+  const [competenciaRecords, setRecordsCompetencia] = useState<{ id: number; descripcion: string; nivel: string; estado: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [editRecordId, setEditRecordId] = useState<number | null>(null);
   const [editDescription, setEditDescription] = useState("");
-  const [editAssociatedCompetence, setEditAssociatedCompetence] = useState<{ id: number; descripcion: string; nivel: string; estado: number } | null>(null);
+  const [editAssociatedCompetence, setEditAssociatedCompetence] = useState(null);
   const recordsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRA() as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number}; estado: number }[];
+        const data = await getRA() as { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number }[];
         setRecords(data);
+        const dataCompetencia = await getCompetencias() as { id: number; descripcion: string; nivel: string; estado: number }[];
+        setRecordsCompetencia(dataCompetencia);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching RA:', error);
@@ -29,35 +33,26 @@ const RA = () => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const activeRecords = records.filter(record => record.estado === 1); // Filtrar solo los RA activos
-  const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = activeRecords.slice(indexOfFirstRecord, indexOfLastRecord);
   const totalPages = Math.ceil(records.length / recordsPerPage);
 
   const handleClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
-  const handleEdit = (record: { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }, estado: number }) => {
+  const handleEdit = (record: { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number }) => {
     setEditRecordId(record.id);
     setEditDescription(record.descripcion);
-    // setEditAssociatedCompetence(record.idCompetenciaPrograma);
+    // setEditAssociatedCompetence(record.idCompetenciaPrograma); //No dejamos editar la competencia
   };
 
   const handleSave = async (id: number) => {
     try {
-      const updatedRA = await updateRA({id: id, descripcion: editDescription, idCompetenciaPrograma: editAssociatedCompetence!, estado: 1 }) as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number };
+      const updatedRA = await updateRA({id: id, descripcion: editDescription, idCompetenciaPrograma: editAssociatedCompetence!, estado: 1 }) as { id: number; descripcion: string; idCompetenciaPrograma: number; estado: number };
       setRecords(records.map(record => (record.id === id ? updatedRA : record)));
       setEditRecordId(null);
     } catch (error) {
       console.error('Error updating RA:', error);
-    }
-  };
-
-  const handleDeactivate = async (id: number) => {
-    try {
-      const updatedRA = await deactivateRA(id);
-      setRecords(records.map(record => (record.id === id ? { ...record, estado: 0 } : record)));
-    } catch (error) {
-      console.error('Error deactivating RA:', error);
     }
   };
 
@@ -109,7 +104,7 @@ const RA = () => {
                   <td>
                     <input
                       type="text"
-                      value={record.idCompetenciaPrograma.descripcion}
+                      value={competenciaRecords.find(competencia => competencia.id === record.idCompetenciaPrograma)?.descripcion}
                       readOnly
                       className="readonly"
                     />
