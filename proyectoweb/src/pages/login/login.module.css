@@ -30,6 +30,9 @@
     overflow: hidden;
 }
 
+<<<<<<< HEAD
+.title{
+=======
 .inputGroup {
     display: flex;
     flex-direction: column;
@@ -78,6 +81,7 @@
 }
 
 .title {
+>>>>>>> 524bdab2de95a5fdbaecf9dd935c8a5df2da846d
     font-size: 2rem;
 
 }
