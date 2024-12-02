@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ra.module.css";
-import { getRA, updateRA, createRA, deleteRA, deactivateRA } from "@/services/Competencias_Ra_service/ra.service";
+import { getRA, updateRA } from "@/services/Competencias_Ra_service/ra.service";
 
-const RA = () => {
+const InactivasRA = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [records, setRecords] = useState<{ id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number}; estado: number }[]>([]);
+  const [records, setRecords] = useState<{ id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [editRecordId, setEditRecordId] = useState<number | null>(null);
   const [editDescription, setEditDescription] = useState("");
@@ -14,37 +14,39 @@ const RA = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRA() as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number}; estado: number }[];
+        const data = await getRA() as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }[];
+        
         setRecords(data);
         setLoading(false);
+        console.log(records);
       } catch (error) {
         console.error('Error fetching RA:', error);
         setLoading(false);
       }
     };
-
     fetchData();
+    console.log(records);
   }, []);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const activeRecords = records.filter(record => record.estado === 1); // Filtrar solo los RA activos
-  const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
-  const totalPages = Math.ceil(records.length / recordsPerPage);
+  const inactiveRecords = records.filter(record => record.estado !== 1); // Filtrar solo los RA inactivos
+  const currentRecords = inactiveRecords.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(inactiveRecords.length / recordsPerPage);
 
   const handleClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
-  const handleEdit = (record: { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }, estado: number }) => {
+  const handleEdit = (record: { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }) => {
     setEditRecordId(record.id);
     setEditDescription(record.descripcion);
-    // setEditAssociatedCompetence(record.idCompetenciaPrograma);
+    setEditAssociatedCompetence(record.idCompetenciaPrograma);
   };
 
   const handleSave = async (id: number) => {
     try {
-      const updatedRA = await updateRA({id: id, descripcion: editDescription, idCompetenciaPrograma: editAssociatedCompetence!, estado: 1 }) as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number };
+      const updatedRA = await updateRA({id: id, descripcion: editDescription, idCompetenciaPrograma: editAssociatedCompetence!, estado: 0 }) as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number };
       setRecords(records.map(record => (record.id === id ? updatedRA : record)));
       setEditRecordId(null);
     } catch (error) {
@@ -52,21 +54,18 @@ const RA = () => {
     }
   };
 
-  const handleDeactivate = async (id: number) => {
+  const handleActivate = async (record: { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number }) => {
     try {
-      const updatedRA = await deactivateRA(id);
-      setRecords(records.map(record => (record.id === id ? { ...record, estado: 0 } : record)));
+      let id = record.id;
+      let descripcion = record.descripcion;
+      let idCompetenciaPrograma = record.idCompetenciaPrograma;
+      let estado = 1;
+      if (id !== null) {
+        const updatedRA = await updateRA({id: id,  descripcion: descripcion, idCompetenciaPrograma: idCompetenciaPrograma!, estado: estado }) as { id: number; descripcion: string; idCompetenciaPrograma: { id: number; descripcion: string; nivel: string; estado: number }; estado: number };
+        setRecords(records.map(record => (record.id === id ? updatedRA : record)));
+      }
     } catch (error) {
-      console.error('Error deactivating RA:', error);
-    }
-  };
-
-  const handleDelete = async (id: number) => {
-    try {
-      await deleteRA(id);
-      setRecords(records.filter(record => record.id !== id));
-    } catch (error) {
-      console.error('Error deleting RA:', error);
+      console.error('Error activating RA:', error);
     }
   };
 
@@ -77,10 +76,10 @@ const RA = () => {
   return (
     <div className={styles.subdivstyle}>
       <div>
-        <h3>Resultados de aprendizaje</h3>
+        <h3>Resultados de aprendizaje inactivos</h3>
       </div>
       <div className="table">
-        {activeRecords.length === 0 ? (
+        {inactiveRecords.length === 0 ? (
           <p>No se encontraron registros</p>
         ) : (
           <table>
@@ -118,9 +117,9 @@ const RA = () => {
                     {editRecordId === record.id ? (
                       <button onClick={() => handleSave(record.id)}>Guardar</button>
                     ) : (
-                      <button onClick={() => handleEdit({ ...record, estado: record.estado })}>Editar</button>
+                      <button onClick={() => handleEdit(record)}>Editar</button>
                     )}
-                    <button onClick={() => handleDelete(record.id)}>Desactivar</button>
+                    <button onClick={() => handleActivate(record)}>Activar</button>
                   </td>
                 </tr>
               ))}
@@ -128,7 +127,7 @@ const RA = () => {
           </table>
         )}
       </div>
-      {activeRecords.length > 0 && (
+      {inactiveRecords.length > 0 && (
         <div className={styles.pagination}>
           {Array.from({ length: totalPages }, (_, index) => (
             <button
@@ -145,4 +144,4 @@ const RA = () => {
   );
 };
 
-export default RA;
+export default InactivasRA;

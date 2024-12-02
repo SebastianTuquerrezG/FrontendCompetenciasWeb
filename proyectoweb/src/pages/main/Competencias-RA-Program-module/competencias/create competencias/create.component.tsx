@@ -1,20 +1,28 @@
 // components/CreateComponent.tsx
 import React, { useState } from "react";
 import styles from "./create.module.css";
+import { createCompetencia } from "@/services/Competencias_Ra_service/competencias.service";
 
 interface CreateComponentProps {
-  onCreate: () => void;
+  onCreate: (competencia: { id: number; descripcion: string; nivel: string; estado: number }) => void;
   onCancel: () => void;
 }
 
 const CreateComponent: React.FC<CreateComponentProps> = ({ onCreate, onCancel }) => {
-  const [description, setDescription] = useState("");
-  const [level, setLevel] = useState("");
+  const [descripcion, setDescription] = useState("");
+  const [nivel, setLevel] = useState("");
+  const [estado, setStatus] = useState(1);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Competencia creada:", { description, level });
-    onCreate(); 
+    try {
+      const newCompetencia = await createCompetencia({ descripcion, nivel, estado }) as { id: number, descripcion: string, nivel: string, estado: number };
+      console.log("Competencia creada:", newCompetencia);
+
+      onCreate(newCompetencia); // Llama a la función de callback cuando se complete la creación
+    } catch (error) {
+      console.error('Error creating competencia:', error);
+    }
   };
 
   return (
@@ -25,7 +33,7 @@ const CreateComponent: React.FC<CreateComponentProps> = ({ onCreate, onCancel })
           <label>Descripción:</label>
           <input
             type="text"
-            value={description}
+            value={descripcion}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
@@ -33,7 +41,7 @@ const CreateComponent: React.FC<CreateComponentProps> = ({ onCreate, onCancel })
           <label>Nivel</label>
           <select
             className={styles.select}
-            value={level}
+            value={nivel}
             onChange={(e) => setLevel(e.target.value)}
             required
           >
@@ -43,7 +51,7 @@ const CreateComponent: React.FC<CreateComponentProps> = ({ onCreate, onCancel })
             <option value="AVANZADO">AVANZADO</option>
           </select>
         </div>
-        <button type="submit" onClick={onCreate}>Guardar</button>
+        <button type="submit">Guardar</button>
         <button type="button" onClick={onCancel}>Volver</button>
       </form>
     </div>

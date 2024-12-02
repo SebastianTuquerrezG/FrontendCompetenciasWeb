@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./competencias.module.css";
-import { getCompetencias, deactivateCompetencia, updateCompetencia, deleteCompetencia } from "@/services/Competencias_Ra_service/competencias.service";
+import { getCompetencias, updateCompetencia } from "@/services/Competencias_Ra_service/competencias.service";
 
-const Competencias = () => {
+const Inactivas = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [records, setRecords] = useState<{ id: number; descripcion: string; nivel: string; estado: number }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,9 +28,9 @@ const Competencias = () => {
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const activeRecords = records.filter(record => record.estado === 1); // Filtrar solo las competencias activas
-  const currentRecords = activeRecords.slice(indexOfFirstRecord, indexOfLastRecord);
-  const totalPages = Math.ceil(activeRecords.length / recordsPerPage);
+  const inactiveRecords = records.filter(record => record.estado !== 1); // Filtrar solo las competencias inactivas
+  const currentRecords = inactiveRecords.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(inactiveRecords.length / recordsPerPage);
 
   const handleClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -44,31 +44,28 @@ const Competencias = () => {
 
   const handleSave = async (id: number) => {
     try {
-      const updatedCompetencia = await updateCompetencia({ id, descripcion: editDescription, nivel: editLevel, estado: 1 }) as { id: number; descripcion: string; nivel: string; estado: number };
+      const updatedCompetencia = await updateCompetencia({ id, descripcion: editDescription, nivel: editLevel, estado: 0 }) as { id: number; descripcion: string; nivel: string; estado: number };
       setRecords(records.map(record => (record.id === id ? updatedCompetencia : record)));
       setEditRecordId(null);
+      console.log(updatedCompetencia);
     } catch (error) {
       console.error('Error updating competencia:', error);
     }
   };
 
-  const handleDeactivate = async (id: number) => {
+  const handleActivate = async (record: { id: number; descripcion: string; nivel: string }) => {
     try {
-      const updatedCompetencia = await deactivateCompetencia(id);
-      setRecords(records.map(record => (record.id === id ? { ...record, estado: 0 } : record)));
-    } catch (error) {
-      console.error('Error deactivating competencia:', error
-      );
-    }
-  };
+      let id = record.id;
+      let descripcion = record.descripcion;
+      let nivel = record.nivel;
 
-
-  const handleDelete = async (id: number) => {
-    try {
-      await deleteCompetencia(id);
-      setRecords(records.filter(record => record.id !== id));
+      if (id !== null) {
+        const updatedCompetencia = await updateCompetencia({ id: id, descripcion: descripcion, nivel: nivel, estado: 1 }) as { id: number; descripcion: string; nivel: string; estado: number };
+        setRecords(records.map(record => (record.id === id ? updatedCompetencia : record)));
+        console.log(updatedCompetencia);
+      }
     } catch (error) {
-      console.error('Error deleting competencia:', error);
+      console.error('Error activating competencia:', error);
     }
   };
 
@@ -79,10 +76,10 @@ const Competencias = () => {
   return (
     <div className={styles.subdivstyle}>
       <div>
-        <h3>Competencias de programa activas</h3>
+        <h3>Competencias de programa inactivas</h3>
       </div>
       <div className="table">
-        {activeRecords.length === 0 ? (
+        {inactiveRecords.length === 0 ? (
           <p>No se encontraron registros</p>
         ) : (
           <table>
@@ -112,7 +109,8 @@ const Competencias = () => {
                       value={editRecordId === record.id ? editLevel : record.nivel}
                       onChange={(e) => setEditLevel(e.target.value)}
                       disabled={editRecordId !== record.id}
-                      className={editRecordId === record.id ? "editable" : "readonly"}tabIndex={editRecordId === record.id ? 0 : -1}
+                      className={editRecordId === record.id ? "editable" : "readonly"}
+                      tabIndex={editRecordId === record.id ? 0 : -1}
                     >
                       <option value="BASICO">BASICO</option>
                       <option value="INTERMEDIO">INTERMEDIO</option>
@@ -125,7 +123,7 @@ const Competencias = () => {
                     ) : (
                       <button onClick={() => handleEdit(record)}>Editar</button>
                     )}
-                    <button onClick={() => handleDelete(record.id)}>Desactivar</button>
+                    <button onClick={() => handleActivate(record)}>Activar</button>
                   </td>
                 </tr>
               ))}
@@ -133,7 +131,7 @@ const Competencias = () => {
           </table>
         )}
       </div>
-      {activeRecords.length > 0 && (
+      {inactiveRecords.length > 0 && (
         <div className={styles.pagination}>
           {Array.from({ length: totalPages }, (_, index) => (
             <button
@@ -150,4 +148,4 @@ const Competencias = () => {
   );
 };
 
-export default Competencias;
+export default Inactivas;

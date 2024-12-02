@@ -4,6 +4,8 @@ import Competencias from "./competencias/competencias.component";
 import RA from "./RA/ra.component";
 import CreateComponent from "./competencias/create competencias/create.component";
 import CreateRaComponent from "./RA/create_ra/create.component";
+import Inactivas from "./competencias/competencias_inactivas/inactivas.component";
+import InactivasRA from "./RA/RA_inactivas/inactivas.component";
 
 const CompetenciasRAProgramModule = () => {
     const [selectedOption, setSelectedTab] = useState("competencias");
@@ -32,7 +34,7 @@ const CompetenciasRAProgramModule = () => {
                         <Competencias />
                         <div className={styles.buttons}>
                             <button onClick={() => setSelectedTab("create-competencias")} >Crear competencia</button>
-                            <button >Ver competencias inactivas</button>
+                            <button onClick={() => setSelectedTab("inactive-competencias")}>Ver competencias inactivas</button>
                         </div>
                     </div>
                 );
@@ -41,13 +43,22 @@ const CompetenciasRAProgramModule = () => {
                     onCreate={handleCompetenciaCreated}
                     onCancel={handleCancelCreateCompetencia}
                 />;
+            case "inactive-competencias":
+                return (
+                    <div>
+                        <Inactivas />
+                        <div className={styles.buttons}>
+                            <button onClick={() => setSelectedTab("competencias")}>Volver</button>
+                        </div>
+                    </div>
+                );
             case "ra":
                 return (
                     <div>
                         <RA />
                         <div className={styles.buttons}>
                             <button onClick={() => setSelectedTab("create-ra")} >Crear resultado de aprendizaje</button>
-                            <button >Ver resultados de aprendizaje inactivos</button>
+                            <button onClick={() => setSelectedTab("inactive-ra")}>Ver resultados de aprendizaje inactivos</button>
                         </div>
                     </div>
                 );
@@ -55,7 +66,16 @@ const CompetenciasRAProgramModule = () => {
                 return <CreateRaComponent
                     onCreate={handleRaCreated}
                     onCancel={handleCancelCreateRa}
-                    />
+                />
+            case "inactive-ra":
+                return (
+                    <div>
+                        <InactivasRA />
+                        <div className={styles.buttons}>
+                            <button onClick={() => setSelectedTab("ra")}>Volver</button>
+                        </div>
+                    </div>
+                );
         };
     }
 

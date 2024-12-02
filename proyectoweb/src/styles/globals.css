@@ -117,6 +117,14 @@ nav ul li:hover {
   color: black;
 }
 
+.table p{
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #4f524f;
+  padding: 20px;
+  border-radius: 30px;
+}
 .table table {
   width: 98%;
   border-collapse: separate;
@@ -168,4 +176,46 @@ nav ul li:hover {
 .table button:active {
   background-color: #3b87da;
   color: white;
+}
+
+.table input.readonly{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.table input.readonly:focus-within{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.table input.editable{
+  background-color: #347CCB;
+  border: #347CCB;
+  color: white;
+  font-size: 1rem;
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.table select.readonly{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+}
+.table select.editable{
+  background-color: #347CCB;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
 }
