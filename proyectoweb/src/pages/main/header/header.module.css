@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    align-items: center;
+    background-color: #272a27;
+    color: white;
+    margin-bottom: auto;
+    padding: 5px;
+    padding-left: 30px;
+    gap: 10px;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+}
+
+.icon{
+    font-size: 40px;
+    margin-left: auto;
+    padding-right: 30px;
+    color: #3f8ee2;
+    transition: 0.2s;
+}
+
+.icon:hover{
+    cursor: pointer;
+    color: #eb5b38;
+    transition: 0.2s;
+}

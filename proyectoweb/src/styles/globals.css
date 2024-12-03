@@ -1,0 +1,223 @@
+/* styles/globals.css 
+  PALETA
+  #272a27 -- VERDE MUY OSCURO
+  #eb5b38 -- NARANJA
+  #347CCB -- AZUL CLARO
+  #E6E4DC -- GRIS CLARO
+
+*/
+
+html,
+body,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.full-height {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 56px);
+}
+
+.navbar {
+  width: 250px;
+  background-color: #272a27;
+  padding-top: 20px;
+  height: calc(100vh - 56px);
+  height: 100%;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  min-height: 500px;
+  overflow-y: scroll; 
+}
+
+
+/* styles/navbar.css */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 20px;
+  background-color: #272a27;
+  color: white;
+  /* margin: 5px 0; */
+}
+
+nav ul li:hover {
+  cursor: pointer;
+  background-color: #343834;
+  transition: 0.2s;
+}
+
+
+/* Estilos generales */
+.main-div-style {
+  /* Para div principales */
+  /* Para no batallar encontrando la forma */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #272a27;
+  margin: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px 2px #ccc;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.sub-div-style {
+  /* Para div secundarios */
+  width: 99%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #3a3d3a;
+  margin: 0;
+  padding: 20px;
+  border-radius: 0px 20px 20px 20px;
+  overflow-y: auto;
+  overflow-x: auto;
+  color: white;
+}
+
+/* Para tablas */
+.table {
+  justify-content: center;
+  align-items: start;
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  /* padding-left: 30px; */
+  color: black;
+}
+
+.table p{
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #4f524f;
+  padding: 20px;
+  border-radius: 30px;
+}
+.table table {
+  width: 98%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table table thead {
+  background-color: #347CCB;
+  border: solid #347CCB;
+  color: white;
+  border-radius: 20px 20px 0px 0px ;
+}
+
+.table table thead th {
+  padding: 10px;
+  border: none;
+}
+
+.table table tbody tr {
+  background-color: #4f524f !important;
+}
+
+.table table tbody tr td {
+  padding: 10px;
+  border: solid 1px #575c57 !important;
+  color:white;
+}
+
+.table button {
+  background-color: #347CCB;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.table button:hover {
+  background-color: #3b87da;
+  transition: 0.2s;
+  color: white;
+}
+
+.table button:active {
+  background-color: #3b87da;
+  color: white;
+}
+
+.table input.readonly{
+  background-color: transparent;
+  width: 98%;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.table input.readonly:focus-within{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.table input.editable{
+  background-color: #347CCB;
+  border: #347CCB;
+  color: white;
+  font-size: 1rem;
+  width: 98%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.table select.readonly{
+  background-color: transparent;
+  width: 98%;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+}
+.table select.editable{
+  background-color: #347CCB;
+  width: 98%;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+}

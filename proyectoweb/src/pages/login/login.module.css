@@ -1,0 +1,104 @@
+/* styles/Login.module.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.container.fade-out {
+    opacity: 0;
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #272a27;
+    padding: 30px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    height: 50%;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputGroup input {
+
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.loginButton {
+    width: 40%;
+    padding: 10px;
+    background-color: #43a1c7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.1s;
+}
+
+.loginButton:hover {
+    background-color: #4eb9e4;
+}
+
+.form {
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+    font-size: 1.2rem;
+}
+
+.title {
+    font-size: 2rem;
+
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+    gap: 10px;
+    /* background-color: blue; */
+    height: 15%;
+    padding-right: 20px;
+}
+
+.span {
+    color: #4eb9e4;
+}
