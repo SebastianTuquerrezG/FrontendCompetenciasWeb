@@ -1,0 +1,88 @@
+.main {
+  width: 99%;
+  height: calc(87vh - 140px);
+  display: flex;
+  flex-direction: column;
+  background-color: #e6e4dc;
+  margin: 0;
+  padding-left: 20px;
+  border-radius: 0px 20px 20px 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 9px;
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+.buttons button {
+  border: none;
+  background-color: #eb5b38;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.buttons button:hover {
+  background-color: #b85339;
+  color: white;
+  border-radius: 10px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background-color: #4f524f;
+  width: 50%;
+  border-radius: 100px;
+  padding: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.pagination button:hover {
+  font-size: 1.1rem;
+  transition: 0.1s;
+}
+
+.pagination button.active {
+  font-size: 1.1rem;
+  color: #4d92dd;
+}
+
+.subdivstyle {
+  /* Para div secundarios */
+  width: 99%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #3a3d3a;
+  margin: 0;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  border-radius: 0px 20px 20px 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: white;
+}
+
+.inputTextTable input {
+  background-color: transparent;
+}

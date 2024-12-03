@@ -29,10 +29,10 @@ const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
           Gestionar competencias y ra del programa
         </li>
         <li
-          className={activeTab === "option2" ? styles.active : ""}
-          onClick={() => handleSelect("option2")}
+          className={activeTab === "Competencias_RA_Asignature_module" ? styles.active : ""}
+          onClick={() => handleSelect("Competencias_RA_Asignature_module")}
         >
-          Opción 2
+          Gestionar competencias y ra de asignatura
         </li>
         <li
           className={activeTab === "Logout" ? styles.active : ""}

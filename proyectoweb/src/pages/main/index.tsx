@@ -5,6 +5,7 @@ import Navbar from "./navbar/navbar.component";
 import CompetenciasRAProgramModule from "./Competencias-RA-Program-module/module.component";
 import Home from "./Home/home.component";
 import { UserProvider, useUserContext } from "@/context/userContext";
+import CompetenciasRAAsignatureModule from "./Competencias-RA-Asignature-module/module.component";
 
 
 export default function Main() {
@@ -24,6 +25,8 @@ export default function Main() {
     switch (selectedOption) {
       case "Competencias_RA_module":
         return <CompetenciasRAProgramModule />
+      case "Competencias_RA_Asignature_module":
+        return <CompetenciasRAAsignatureModule />
       default:
         return <Home />
     }

@@ -3,18 +3,19 @@ import styles from "./home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { useUserContext } from "@/context/userContext";
 const Home = () => {
+    const {user} = useUserContext();
     return (
         <div className="main-div-style">
             <div className={styles.container}>
                 <div className={styles.header}>
                     <FontAwesomeIcon icon={faHome} className={styles.icon} id="home-icon"/>
                     <h1>Inicio</h1>
-
                 </div>
                 <div className={styles.content}>
                     <img src="/assets/images/home_image.jpg" alt="home_img" className={styles.images}/>
-                    <p>Bienvenido ** a SISGECO</p>
+                    <p>Bienvenido {user?.name} a SISGECO</p>
                 </div>
                 <div className={styles.footer}>
                     <div className={styles.social}>
