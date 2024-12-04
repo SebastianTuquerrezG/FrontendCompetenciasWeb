@@ -36,6 +36,12 @@ const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
             >
               Gestionar Docentes
             </li>
+            <li
+              className={activeTab === "Asociacion" ? styles.active : ""}
+              onClick={() => handleSelect("Asociacion")}
+            >
+              Asociar
+            </li>
           </>
         )}
 
@@ -57,13 +63,6 @@ const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
             </li>
           </>
         )}
-
-        <li
-          className={activeTab === "option2" ? styles.active : ""}
-          onClick={() => handleSelect("option2")}
-        >
-          Asociar
-        </li>
 
         <li
           className={activeTab === "Logout" ? styles.active : ""}

@@ -1,0 +1,92 @@
+.title{
+    color: white;
+}
+
+.tabs {
+    display: flex;
+    font-weight: bold !important;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 20px 20px 0px 0px;
+    transition: 0.2s
+}
+
+.tabs button:hover {
+    background-color: #347ccb;
+    color: white;
+    transition: 0.2s;
+    padding: 10px 25px;
+}
+
+.tabs button.active {
+    background-color: #347ccb;
+    font-weight: bold;
+    color: white;
+    padding: 10px 25px;
+    box-shadow: 0 0 7px 0 black ;
+    /* box-shadow: -2px 0 7px 0 black; */
+}
+
+.tabs button.activeSub{
+    background-color: #eb5b38;
+    font-weight: bold;
+    color: white;
+    padding: 10px 25px;
+    box-shadow: 0 0 7px 0 black ;
+    transition: 0.2s;
+}
+
+.buttons{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #3a3d3a;
+    padding: 20px;
+    margin-top: 1%;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+.buttons button{
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    background-color: #347ccb;
+    color: white;
+}
+
+.buttons button:hover{
+    background-color: #3b84d3;
+
+}
+
+.buttonsBack{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #3a3d3a;
+    padding: 20px;
+    margin-top: 1%;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+.buttonsBack button{
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    background-color: #eb5b38;
+    color: white;
+}
+
+.buttonsBack button:hover{
+    background-color: #bd472a;
+
+}

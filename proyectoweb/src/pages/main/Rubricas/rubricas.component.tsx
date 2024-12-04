@@ -1,6 +1,10 @@
 import { useState } from "react";
 import styles from "./rubricas.module.css";
 import CreateRubrica from "./create_rubrica/create.component";
+import Rubricas from "./rubricas/rubricas.component";
+import InactivasRubricas from "./deactivate/inactivas.component";
+import CriterioModule from "./criterio/criterio.component";
+import NivelModule from "./nivel/nivel.component";
 
 const RubricasModule = () => {
     const [selectedOption, setSelectedTab] = useState("rubricas");
@@ -18,7 +22,7 @@ const RubricasModule = () => {
             case "rubricas":
                 return (
                     <div>
-                        {/* <Teachers /> */}
+                        <Rubricas />
                         <div className={styles.buttons}>
                             <button onClick={() => setSelectedTab("create-rubricas")} >Crear Rubrica</button>
                             <button onClick={() => setSelectedTab("inactive-rubricas")}>Ver rubricas inactivas</button>
@@ -33,7 +37,25 @@ const RubricasModule = () => {
             case "inactive-rubricas":
                 return (
                     <div>
-                        {/* <Inactivos /> */}
+                        <InactivasRubricas />
+                        <div className={styles.buttonsBack}>
+                            <button onClick={() => setSelectedTab("rubricas")}>Volver</button>
+                        </div>
+                    </div>
+                );
+            case "criterio":
+                return (
+                    <div>
+                        <CriterioModule />
+                        <div className={styles.buttonsBack}>
+                            <button onClick={() => setSelectedTab("rubricas")}>Volver</button>
+                        </div>
+                    </div>
+                );
+            case "nivel":
+                return (
+                    <div>
+                        <NivelModule />
                         <div className={styles.buttonsBack}>
                             <button onClick={() => setSelectedTab("rubricas")}>Volver</button>
                         </div>
@@ -62,6 +84,18 @@ const RubricasModule = () => {
                     hidden={selectedOption !== "create-rubricas" && selectedOption !== "inactive-rubricas"}
                 >
                     Gestionar Rubricas
+                </button>
+                <button
+                    className={selectedOption === "criterio" ? styles.active : ""}
+                    onClick={() => setSelectedTab("criterio")}
+                >
+                    Criterio de Evaluación
+                </button>
+                <button
+                    className={selectedOption === "nivel" ? styles.active : ""}
+                    onClick={() => setSelectedTab("nivel")}
+                >
+                    Nivel de Desempeño
                 </button>
             </div>
             <div>

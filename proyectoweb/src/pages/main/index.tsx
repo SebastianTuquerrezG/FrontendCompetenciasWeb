@@ -8,6 +8,7 @@ import TeachersProgramModule from "./Teacher-Program-module/module.component";
 import { UserProvider, useUserContext } from "@/context/userContext";
 import CompetenciasRAAsignatureModule from "./Competencias-RA-Asignature-module/module.component";
 import RubricasModule from "./Rubricas/rubricas.component";
+import AsociacionModule from "./Asociacion/asociacion.component";
 
 
 export default function Main() {
@@ -33,6 +34,8 @@ export default function Main() {
         return <CompetenciasRAAsignatureModule />
       case "Rubricas":
         return <RubricasModule/> 
+      case "Asociacion":
+        return <AsociacionModule />
       default:
         return <Home />
     }

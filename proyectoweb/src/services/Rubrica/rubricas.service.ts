@@ -17,17 +17,17 @@ export const createRubricas = async (rubrica: { nombre: string; raAsignaturaId: 
         const response = await axios.post(`${API_URL}/rubrica`, rubrica);
         return response.data;
     } catch (error) {
-        console.error('Error creating teacher:', error);
+        console.error('Error creating rubrica:', error);
         throw error;
     }
 };
 
-export const updateRubricas = async (teacher: { id: number; identificationType: string; teacherType: string; names: string; lastNames: string; identification: string; title: string; status: string }) => {
+export const updateRubricas = async (rubrica: { id: number; nombre: string; raAsignaturaId: number; estado: string;  createAt: Date, updateAt: Date; }) => {
     try {
-        const response = await axios.put(`${API_URL}/rubrica/${teacher.id}`, teacher);
+        const response = await axios.put(`${API_URL}/rubrica`, rubrica);
         return response.data;
     } catch (error) {
-        console.error('Error updating teacher:', error);
+        console.error('Error updating rubrica:', error);
         throw error;
     }
 };
@@ -37,17 +37,17 @@ export const deactivateRubricas = async (id: number) => {
         const response = await axios.put(`${API_URL}/rubrica/status/${id}/INACTIVO`);
         return response.data;
     } catch (error) {
-        console.error('Error deactivating teacher:', error);
+        console.error('Error deactivating rubrica:', error);
         throw error;
     }
 };
 
 export const deleteRubricas = async (id: number) => {
     try {
-        const response = await axios.delete(`${API_URL}/teachers/${id}`);
+        const response = await axios.delete(`${API_URL}/rubrica/${id}`);
         return response.data;
     } catch (error) {
-        console.error('Error deleting teacher:', error);
+        console.error('Error deleting rubrica:', error);
         throw error;
     }
 };
