@@ -23,7 +23,7 @@ export const AuthenticateUser = ({ username, password, onReset }: Props) => {
     if (!authResponse.data) {
         onReset();
         return (
-            <div>Usuario no autenticado...</div>
+            <div>Usuario o contraseña incorrecta...</div>
         );
     }
 

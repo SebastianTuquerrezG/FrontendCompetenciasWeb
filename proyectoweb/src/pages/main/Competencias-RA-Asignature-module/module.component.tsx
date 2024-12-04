@@ -1,5 +1,11 @@
 import { useState } from "react";
 import styles from "./module.module.css"
+import CompetenciasAsignatura from "./competencias/competencias.module";
+import CreateComponentAsig from "./competencias/create competencias/createAsig.component";
+import InactivasAsig from "./competencias/competencias_inactivas/inactivas.component";
+import CreateRaComponentAsig from "./RA/create_ra/createRa.component";
+import RAAsig from "./RA/raAsig.component";
+import InactivasRAAsig from "./RA/RA_inactivas/inactivasAsig.component";
 
 const CompetenciasRAAsignatureModule = () => {
     const [selectedOption, setSelectedTab] = useState("competencias");
@@ -25,7 +31,7 @@ const CompetenciasRAAsignatureModule = () => {
             case "competencias":
                 return (
                     <div>
-                        {/* <Competencias /> */}
+                        <CompetenciasAsignatura />
                         <div className={styles.buttons}>
                             <button onClick={() => setSelectedTab("create-competencias")} >Crear competencia</button>
                             <button onClick={() => setSelectedTab("inactive-competencias")}>Ver competencias inactivas</button>
@@ -33,14 +39,14 @@ const CompetenciasRAAsignatureModule = () => {
                     </div>
                 );
             case "create-competencias":
-            // return <CreateComponent
-            //     onCreate={handleCompetenciaCreated}
-            //     onCancel={handleCancelCreateCompetencia}
-            // />;
+            return <CreateComponentAsig
+                onCreate={handleCompetenciaCreated}
+                onCancel={handleCancelCreateCompetencia}
+            />;
             case "inactive-competencias":
                 return (
                     <div>
-                        {/* <Inactivas /> */}
+                        <InactivasAsig />
                         <div className={styles.buttonsBack}>
                             <button onClick={() => setSelectedTab("competencias")}>Volver</button>
                         </div>
@@ -49,7 +55,7 @@ const CompetenciasRAAsignatureModule = () => {
             case "ra":
                 return (
                     <div>
-                        {/* <RA /> */}
+                        <RAAsig />
                         <div className={styles.buttons}>
                             <button onClick={() => setSelectedTab("create-ra")} >Crear resultado de aprendizaje</button>
                             <button onClick={() => setSelectedTab("inactive-ra")}>Ver resultados de aprendizaje inactivos</button>
@@ -57,14 +63,14 @@ const CompetenciasRAAsignatureModule = () => {
                     </div>
                 );
             case "create-ra":
-            // return <CreateRaComponent
-            //     onCreate={handleRaCreated}
-            //     onCancel={handleCancelCreateRa}
-            // />
+            return <CreateRaComponentAsig
+                onCreate={handleRaCreated}
+                onCancel={handleCancelCreateRa}
+            />
             case "inactive-ra":
                 return (
                     <div>
-                        {/* <InactivasRA /> */}
+                        <InactivasRAAsig />
                         <div className={styles.buttonsBack}>
                             <button onClick={() => setSelectedTab("ra")}>Volver</button>
                         </div>

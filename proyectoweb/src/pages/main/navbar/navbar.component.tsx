@@ -8,7 +8,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
   const [activeTab, setActiveTab] = useState("none");
-  const { logout } = useUserContext();
+  const { logout, user } = useUserContext();
 
   const handleSelect = (option: string) => {
     setActiveTab(option);
@@ -22,18 +22,49 @@ const Navbar: React.FC<NavbarProps> = ({ onSelect }) => {
   return (
     <nav>
       <ul className={styles.nav}>
+        {user?.rol == "ADMIN" && (
+          <>
+            <li
+              className={activeTab === "Competencias_RA_module" ? styles.active : ""}
+              onClick={() => handleSelect("Competencias_RA_module")}
+            >
+              Gestionar competencias y ra del programa
+            </li>
+            <li
+              className={activeTab === "Teachers_module" ? styles.active : ""}
+              onClick={() => handleSelect("Teachers_module")}
+            >
+              Gestionar Docentes
+            </li>
+          </>
+        )}
+
         <li
-          className={activeTab === "Competencias_RA_module" ? styles.active : ""}
-          onClick={() => handleSelect("Competencias_RA_module")}
+          className={activeTab === "Competencias_RA_Asignatura_module" ? styles.active : ""}
+          onClick={() => handleSelect("Competencias_RA_Asignatura_module")}
         >
-          Gestionar competencias y ra del programa
+          Gestionar competencias y ra de Asignatura
         </li>
+
+
+        {user?.rol == "DOCENTE" && (
+          <>
+            <li
+              className={activeTab === "Rubricas" ? styles.active : ""}
+              onClick={() => handleSelect("Rubricas")}
+            >
+              Rúbricas
+            </li>
+          </>
+        )}
+
         <li
-          className={activeTab === "Competencias_RA_Asignature_module" ? styles.active : ""}
-          onClick={() => handleSelect("Competencias_RA_Asignature_module")}
+          className={activeTab === "option2" ? styles.active : ""}
+          onClick={() => handleSelect("option2")}
         >
-          Gestionar competencias y ra de asignatura
+          Asociar
         </li>
+
         <li
           className={activeTab === "Logout" ? styles.active : ""}
           onClick={handleLogout}

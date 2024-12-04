@@ -4,8 +4,10 @@ import Header from "./header/header.component";
 import Navbar from "./navbar/navbar.component";
 import CompetenciasRAProgramModule from "./Competencias-RA-Program-module/module.component";
 import Home from "./Home/home.component";
+import TeachersProgramModule from "./Teacher-Program-module/module.component";
 import { UserProvider, useUserContext } from "@/context/userContext";
 import CompetenciasRAAsignatureModule from "./Competencias-RA-Asignature-module/module.component";
+import RubricasModule from "./Rubricas/rubricas.component";
 
 
 export default function Main() {
@@ -25,8 +27,12 @@ export default function Main() {
     switch (selectedOption) {
       case "Competencias_RA_module":
         return <CompetenciasRAProgramModule />
-      case "Competencias_RA_Asignature_module":
+      case "Teachers_module":
+        return <TeachersProgramModule/>  
+      case "Competencias_RA_Asignatura_module":
         return <CompetenciasRAAsignatureModule />
+      case "Rubricas":
+        return <RubricasModule/> 
       default:
         return <Home />
     }
